@@ -27,6 +27,9 @@ abstract class SuppliersRecord
   String get description;
 
   @nullable
+  String get address;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -35,7 +38,8 @@ abstract class SuppliersRecord
     ..telephone = 0
     ..email = ''
     ..uid = ''
-    ..description = '';
+    ..description = ''
+    ..address = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('suppliers');
@@ -64,6 +68,7 @@ Map<String, dynamic> createSuppliersRecordData({
   String email,
   String uid,
   String description,
+  String address,
 }) =>
     serializers.toFirestore(
         SuppliersRecord.serializer,
@@ -72,4 +77,5 @@ Map<String, dynamic> createSuppliersRecordData({
           ..telephone = telephone
           ..email = email
           ..uid = uid
-          ..description = description));
+          ..description = description
+          ..address = address));

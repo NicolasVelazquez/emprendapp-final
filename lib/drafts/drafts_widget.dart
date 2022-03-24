@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/create_draft_widget.dart';
 import '../components/edit_draft_widget.dart';
+import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -36,8 +37,8 @@ class _DraftsWidgetState extends State<DraftsWidget> {
             color: Colors.white,
             size: 30,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            Navigator.pop(context);
           },
         ),
         title: Text(
@@ -105,6 +106,13 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                       );
                     }
                     List<DraftsRecord> gridViewDraftsRecordList = snapshot.data;
+                    if (gridViewDraftsRecordList.isEmpty) {
+                      return Center(
+                        child: EmptyListWidget(
+                          item: 'Borradores',
+                        ),
+                      );
+                    }
                     return GridView.builder(
                       padding: EdgeInsets.zero,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -143,7 +151,7 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                               Image.network(
                                 valueOrDefault<String>(
                                   gridViewDraftsRecord.image,
-                                  'https://picsum.photos/seed/676/600',
+                                  'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                 ),
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height * 1,
@@ -151,22 +159,41 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                               ),
                               Align(
                                 alignment: AlignmentDirectional(0, -0.4),
-                                child: Text(
-                                  gridViewDraftsRecord.title,
-                                  style: FlutterFlowTheme.of(context)
-                                      .subtitle1
-                                      .override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: FlutterFlowTheme.of(context)
-                                            .textColor,
-                                      ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
+                                  child: Text(
+                                    gridViewDraftsRecord.title,
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textColor,
+                                        ),
+                                  ),
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, -0.05),
-                                child: Text(
-                                  gridViewDraftsRecord.description,
-                                  style: FlutterFlowTheme.of(context).bodyText2,
+                                alignment: AlignmentDirectional(0, 1),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  constraints: BoxConstraints(
+                                    maxHeight: 80,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(0x2A302F2F),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0, -0.05),
+                                    child: Text(
+                                      gridViewDraftsRecord.description,
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText2,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Align(
@@ -178,7 +205,7 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                                   buttonSize: 60,
                                   icon: Icon(
                                     Icons.delete_forever_rounded,
-                                    color: Color(0xFFB90C0C),
+                                    color: Color(0xB0F97070),
                                     size: 30,
                                   ),
                                   onPressed: () async {

@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/book_appointment_copy_widget.dart';
 import '../components/book_appointment_widget.dart';
+import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -118,9 +119,8 @@ class _SocialNetworksWidgetState extends State<SocialNetworksWidget> {
                     List<PostsRecord> listViewPostsRecordList = snapshot.data;
                     if (listViewPostsRecordList.isEmpty) {
                       return Center(
-                        child: Image.asset(
-                          'assets/images/ray-hennessy-OjE4RtaibFc-unsplash.jpg',
-                          fit: BoxFit.cover,
+                        child: EmptyListWidget(
+                          item: 'Publicaciones',
                         ),
                       );
                     }
@@ -163,39 +163,64 @@ class _SocialNetworksWidgetState extends State<SocialNetworksWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle2,
                                         ),
-                                        InkWell(
-                                          onTap: () async {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.9,
-                                                    child:
-                                                        BookAppointmentCopyWidget(
-                                                      post: listViewPostsRecord,
-                                                    ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () async {
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Padding(
+                                                          padding:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .viewInsets,
+                                                          child: Container(
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.9,
+                                                            child:
+                                                                BookAppointmentCopyWidget(
+                                                              post:
+                                                                  listViewPostsRecord,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Icon(
+                                                    Icons.mode_edit,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .grayLight,
+                                                    size: 24,
                                                   ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                          child: Icon(
-                                            Icons.mode_edit,
-                                            color: FlutterFlowTheme.of(context)
-                                                .grayLight,
-                                            size: 24,
-                                          ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    await listViewPostsRecord
+                                                        .reference
+                                                        .delete();
+                                                  },
+                                                  child: Icon(
+                                                    Icons.close_rounded,
+                                                    color: Color(0xFFF97070),
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

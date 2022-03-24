@@ -1,10 +1,10 @@
-import '../add_another_profile/add_another_profile_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_radio_button.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -23,11 +23,11 @@ class EditProfileWidget extends StatefulWidget {
 }
 
 class _EditProfileWidgetState extends State<EditProfileWidget> {
-  String radioButtonValue;
-  TextEditingController yourAgeController;
-  TextEditingController yourEmailController;
+  String uploadedFileUrl = '';
   TextEditingController yourNameController;
-  TextEditingController yourAilmentsController;
+  TextEditingController yourEmailController;
+  TextEditingController bussinesNameController;
+  TextEditingController bussinesLineController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -71,7 +71,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               ),
             ),
             title: Text(
-              'Edit Profile',
+              'Editar Perfil',
               style: FlutterFlowTheme.of(context).title3,
             ),
             actions: [],
@@ -82,14 +82,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           body: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 1,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fitWidth,
-                image: Image.asset(
-                  'assets/images/page_background.png',
-                ).image,
-              ),
-            ),
+            decoration: BoxDecoration(),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -109,7 +102,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         shape: BoxShape.circle,
                       ),
                       child: Image.network(
-                        editProfileUsersRecord.photoUrl,
+                        valueOrDefault<String>(
+                          editProfileUsersRecord.photoUrl,
+                          'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
+                        ),
                       ),
                     ),
                   ),
@@ -117,12 +113,36 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AddAnotherProfileWidget(),
-                          ),
+                        final selectedMedia =
+                            await selectMediaWithSourceBottomSheet(
+                          context: context,
+                          allowPhoto: true,
                         );
+                        if (selectedMedia != null &&
+                            validateFileFormat(
+                                selectedMedia.storagePath, context)) {
+                          showUploadMessage(
+                            context,
+                            'Uploading file...',
+                            showLoading: true,
+                          );
+                          final downloadUrl = await uploadData(
+                              selectedMedia.storagePath, selectedMedia.bytes);
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          if (downloadUrl != null) {
+                            setState(() => uploadedFileUrl = downloadUrl);
+                            showUploadMessage(
+                              context,
+                              'Success!',
+                            );
+                          } else {
+                            showUploadMessage(
+                              context,
+                              'Failed to upload media',
+                            );
+                            return;
+                          }
+                        }
                       },
                       text: 'Change Photo',
                       options: FFButtonOptions(
@@ -147,13 +167,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ),
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: 'Your Name',
+                        labelText: 'Nombre',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
-                        hintText: 'Please enter a valid number...',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -190,13 +209,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       controller: yourEmailController,
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: 'Email Address',
+                        labelText: 'Email',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
-                        hintText: 'Your email',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -232,18 +250,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                     child: TextFormField(
-                      controller: yourAgeController ??= TextEditingController(
-                        text: editProfileUsersRecord.age.toString(),
+                      controller: bussinesNameController ??=
+                          TextEditingController(
+                        text: editProfileUsersRecord.businessName,
                       ),
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: 'Your Age',
+                        labelText: 'Emprendimiento',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
-                        hintText: 'i.e. 34',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -272,25 +290,23 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             fontFamily: 'Lexend Deca',
                             color: FlutterFlowTheme.of(context).textColor,
                           ),
-                      keyboardType: TextInputType.number,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                     child: TextFormField(
-                      controller: yourAilmentsController ??=
+                      controller: bussinesLineController ??=
                           TextEditingController(
-                        text: editProfileUsersRecord.ailments,
+                        text: editProfileUsersRecord.bussinesLine,
                       ),
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: 'Ailments',
+                        labelText: 'Rubro',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
-                        hintText: 'What types of allergies do you have..',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -319,72 +335,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             fontFamily: 'Lexend Deca',
                             color: FlutterFlowTheme.of(context).textColor,
                           ),
-                      maxLines: 3,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Your Birth Sex',
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        StreamBuilder<UsersRecord>(
-                          stream: UsersRecord.getDocument(
-                              editProfileUsersRecord.reference),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 40,
-                                  height: 40,
-                                  child: SpinKitDoubleBounce(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 40,
-                                  ),
-                                ),
-                              );
-                            }
-                            final radioButtonUsersRecord = snapshot.data;
-                            return FlutterFlowRadioButton(
-                              options: ['Male', 'Female', 'Undisclosed'],
-                              onChanged: (value) {
-                                setState(() => radioButtonValue = value);
-                              },
-                              optionHeight: 25,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color:
-                                        FlutterFlowTheme.of(context).textColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                              textPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.horizontal,
-                              radioButtonColor:
-                                  FlutterFlowTheme.of(context).primaryColor,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            );
-                          },
-                        ),
-                      ],
                     ),
                   ),
                   Padding(
@@ -394,15 +344,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         final usersUpdateData = createUsersRecordData(
                           displayName: yourNameController?.text ?? '',
                           email: yourEmailController.text,
-                          age: int.parse(yourAgeController?.text ?? ''),
-                          ailments: yourAilmentsController?.text ?? '',
-                          userSex: editProfileUsersRecord.userSex,
+                          businessName: bussinesNameController?.text ?? '',
+                          bussinesLine: bussinesLineController?.text ?? '',
+                          photoUrl: uploadedFileUrl,
                         );
                         await editProfileUsersRecord.reference
                             .update(usersUpdateData);
                         Navigator.pop(context);
                       },
-                      text: 'Save Changes',
+                      text: 'Guardar',
                       options: FFButtonOptions(
                         width: 230,
                         height: 56,

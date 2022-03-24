@@ -39,8 +39,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
         text: formatNumber(
       widget.product.price,
       formatType: FormatType.decimal,
-      decimalType: DecimalType.commaDecimal,
-      currency: '\$',
+      decimalType: DecimalType.automatic,
     ));
   }
 
@@ -322,7 +321,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               .update(productsUpdateData);
                           Navigator.pop(context);
                         },
-                        text: 'Save Changes',
+                        text: 'Guardar',
                         options: FFButtonOptions(
                           width: 150,
                           height: 50,

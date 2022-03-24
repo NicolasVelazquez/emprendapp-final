@@ -53,13 +53,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add('age')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.ailments;
-    if (value != null) {
-      result
-        ..add('ailments')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.location;
     if (value != null) {
       result
@@ -88,17 +81,17 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.userSex;
-    if (value != null) {
-      result
-        ..add('userSex')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.businessName;
     if (value != null) {
       result
         ..add('business_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.bussinesLine;
+    if (value != null) {
+      result
+        ..add('bussinesLine')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -144,10 +137,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.age = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'ailments':
-          result.ailments = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
         case 'location':
           result.location = serializers.deserialize(value,
               specifiedType: const FullType(LatLng)) as LatLng;
@@ -164,12 +153,12 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.createdTime = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
           break;
-        case 'userSex':
-          result.userSex = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
         case 'business_name':
           result.businessName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'bussinesLine':
+          result.bussinesLine = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'Document__Reference__Field':
@@ -197,8 +186,6 @@ class _$UsersRecord extends UsersRecord {
   @override
   final int age;
   @override
-  final String ailments;
-  @override
   final LatLng location;
   @override
   final String phoneNumber;
@@ -207,9 +194,9 @@ class _$UsersRecord extends UsersRecord {
   @override
   final DateTime createdTime;
   @override
-  final String userSex;
-  @override
   final String businessName;
+  @override
+  final String bussinesLine;
   @override
   final DocumentReference<Object> reference;
 
@@ -222,13 +209,12 @@ class _$UsersRecord extends UsersRecord {
       this.password,
       this.uid,
       this.age,
-      this.ailments,
       this.location,
       this.phoneNumber,
       this.photoUrl,
       this.createdTime,
-      this.userSex,
       this.businessName,
+      this.bussinesLine,
       this.reference})
       : super._();
 
@@ -248,13 +234,12 @@ class _$UsersRecord extends UsersRecord {
         password == other.password &&
         uid == other.uid &&
         age == other.age &&
-        ailments == other.ailments &&
         location == other.location &&
         phoneNumber == other.phoneNumber &&
         photoUrl == other.photoUrl &&
         createdTime == other.createdTime &&
-        userSex == other.userSex &&
         businessName == other.businessName &&
+        bussinesLine == other.bussinesLine &&
         reference == other.reference;
   }
 
@@ -270,21 +255,17 @@ class _$UsersRecord extends UsersRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(0,
-                                                        displayName.hashCode),
-                                                    email.hashCode),
-                                                password.hashCode),
-                                            uid.hashCode),
-                                        age.hashCode),
-                                    ailments.hashCode),
+                                            $jc($jc(0, displayName.hashCode),
+                                                email.hashCode),
+                                            password.hashCode),
+                                        uid.hashCode),
+                                    age.hashCode),
                                 location.hashCode),
                             phoneNumber.hashCode),
                         photoUrl.hashCode),
                     createdTime.hashCode),
-                userSex.hashCode),
-            businessName.hashCode),
+                businessName.hashCode),
+            bussinesLine.hashCode),
         reference.hashCode));
   }
 
@@ -296,13 +277,12 @@ class _$UsersRecord extends UsersRecord {
           ..add('password', password)
           ..add('uid', uid)
           ..add('age', age)
-          ..add('ailments', ailments)
           ..add('location', location)
           ..add('phoneNumber', phoneNumber)
           ..add('photoUrl', photoUrl)
           ..add('createdTime', createdTime)
-          ..add('userSex', userSex)
           ..add('businessName', businessName)
+          ..add('bussinesLine', bussinesLine)
           ..add('reference', reference))
         .toString();
   }
@@ -331,10 +311,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   int get age => _$this._age;
   set age(int age) => _$this._age = age;
 
-  String _ailments;
-  String get ailments => _$this._ailments;
-  set ailments(String ailments) => _$this._ailments = ailments;
-
   LatLng _location;
   LatLng get location => _$this._location;
   set location(LatLng location) => _$this._location = location;
@@ -351,13 +327,13 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   DateTime get createdTime => _$this._createdTime;
   set createdTime(DateTime createdTime) => _$this._createdTime = createdTime;
 
-  String _userSex;
-  String get userSex => _$this._userSex;
-  set userSex(String userSex) => _$this._userSex = userSex;
-
   String _businessName;
   String get businessName => _$this._businessName;
   set businessName(String businessName) => _$this._businessName = businessName;
+
+  String _bussinesLine;
+  String get bussinesLine => _$this._bussinesLine;
+  set bussinesLine(String bussinesLine) => _$this._bussinesLine = bussinesLine;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
@@ -376,13 +352,12 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _password = $v.password;
       _uid = $v.uid;
       _age = $v.age;
-      _ailments = $v.ailments;
       _location = $v.location;
       _phoneNumber = $v.phoneNumber;
       _photoUrl = $v.photoUrl;
       _createdTime = $v.createdTime;
-      _userSex = $v.userSex;
       _businessName = $v.businessName;
+      _bussinesLine = $v.bussinesLine;
       _reference = $v.reference;
       _$v = null;
     }
@@ -409,13 +384,12 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             password: password,
             uid: uid,
             age: age,
-            ailments: ailments,
             location: location,
             phoneNumber: phoneNumber,
             photoUrl: photoUrl,
             createdTime: createdTime,
-            userSex: userSex,
             businessName: businessName,
+            bussinesLine: bussinesLine,
             reference: reference);
     replace(_$result);
     return _$result;

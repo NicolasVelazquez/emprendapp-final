@@ -1,11 +1,11 @@
-import '../add_another_profile/add_another_profile_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +21,10 @@ class CompleteProfileWidget extends StatefulWidget {
 
 class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
     with TickerProviderStateMixin {
-  String radioButtonValue;
-  TextEditingController ailmentsController;
-  TextEditingController yourAgeController;
+  String uploadedFileUrl = '';
   TextEditingController yourNameController;
+  TextEditingController bussinesController;
+  TextEditingController bussinesLineController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
     'circleImageOnPageLoadAnimation': AnimationInfo(
@@ -34,20 +34,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
       fadeIn: true,
       initialState: AnimationState(
         offset: Offset(0, 19),
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        opacity: 1,
-      ),
-    ),
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 50,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 20),
         opacity: 0,
       ),
       finalState: AnimationState(
@@ -75,7 +61,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
       delay: 200,
       fadeIn: true,
       initialState: AnimationState(
-        offset: Offset(0, 40),
+        offset: Offset(0, 60),
         opacity: 0,
       ),
       finalState: AnimationState(
@@ -86,10 +72,10 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
     'textFieldOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       duration: 600,
-      delay: 200,
+      delay: 100,
       fadeIn: true,
       initialState: AnimationState(
-        offset: Offset(0, 60),
+        offset: Offset(0, 20),
         opacity: 0,
       ),
       finalState: AnimationState(
@@ -97,50 +83,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
         opacity: 1,
       ),
     ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 250,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 50),
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        opacity: 1,
-      ),
-    ),
-    'radioButtonOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 300,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 50),
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        opacity: 1,
-      ),
-    ),
-    'buttonOnPageLoadAnimation1': AnimationInfo(
-      curve: Curves.bounceOut,
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 350,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 40),
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        opacity: 1,
-      ),
-    ),
-    'buttonOnPageLoadAnimation2': AnimationInfo(
+    'buttonOnPageLoadAnimation': AnimationInfo(
       curve: Curves.bounceOut,
       trigger: AnimationTrigger.onPageLoad,
       duration: 600,
@@ -166,9 +109,9 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
       this,
     );
 
-    ailmentsController = TextEditingController();
-    yourAgeController = TextEditingController();
+    bussinesController = TextEditingController();
     yourNameController = TextEditingController();
+    bussinesLineController = TextEditingController();
   }
 
   @override
@@ -189,7 +132,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
           ),
         ),
         title: Text(
-          'Complete Profile',
+          'Completar Perfil',
           style: FlutterFlowTheme.of(context).title3,
         ),
         actions: [],
@@ -200,14 +143,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fitWidth,
-            image: Image.asset(
-              'assets/images/page_background.png',
-            ).image,
-          ),
-        ),
+        decoration: BoxDecoration(),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -219,26 +155,74 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                child: Image.asset(
-                  'assets/images/uiAvatar@2x.png',
+                child: Image.network(
+                  valueOrDefault<String>(
+                    uploadedFileUrl,
+                    'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
+                  ),
                 ),
               ).animated([animationsMap['circleImageOnPageLoadAnimation']]),
-              Text(
-                'Upload a photo for us to easily identify you.',
-                style: FlutterFlowTheme.of(context).bodyText1,
-              ).animated([animationsMap['textOnPageLoadAnimation1']]),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    final selectedMedia =
+                        await selectMediaWithSourceBottomSheet(
+                      context: context,
+                      allowPhoto: true,
+                    );
+                    if (selectedMedia != null &&
+                        validateFileFormat(
+                            selectedMedia.storagePath, context)) {
+                      showUploadMessage(
+                        context,
+                        'Uploading file...',
+                        showLoading: true,
+                      );
+                      final downloadUrl = await uploadData(
+                          selectedMedia.storagePath, selectedMedia.bytes);
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      if (downloadUrl != null) {
+                        setState(() => uploadedFileUrl = downloadUrl);
+                        showUploadMessage(
+                          context,
+                          'Success!',
+                        );
+                      } else {
+                        showUploadMessage(
+                          context,
+                          'Failed to upload media',
+                        );
+                        return;
+                      }
+                    }
+                  },
+                  text: 'Cambiar Foto',
+                  options: FFButtonOptions(
+                    width: 140,
+                    height: 40,
+                    color: FlutterFlowTheme.of(context).darkBackground,
+                    textStyle: FlutterFlowTheme.of(context).bodyText2,
+                    elevation: 2,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: 8,
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                 child: TextFormField(
                   controller: yourNameController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Your Name',
+                    labelText: 'Tu Nombre',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: FlutterFlowTheme.of(context).grayLight,
                         ),
-                    hintText: 'Please enter a valid number...',
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0x98FFFFFF),
@@ -271,15 +255,15 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                 child: TextFormField(
-                  controller: yourAgeController,
+                  controller: bussinesController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Your Age',
+                    labelText: 'Nombre del Emprendimiento',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: FlutterFlowTheme.of(context).grayLight,
                         ),
-                    hintText: 'i.e. 34',
+                    hintText: 'Nombre del emprendimiento',
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0x98FFFFFF),
@@ -307,21 +291,19 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                         fontFamily: 'Lexend Deca',
                         color: FlutterFlowTheme.of(context).textColor,
                       ),
-                  keyboardType: TextInputType.number,
                 ).animated([animationsMap['textFieldOnPageLoadAnimation2']]),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                 child: TextFormField(
-                  controller: ailmentsController,
+                  controller: bussinesLineController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Ailments',
+                    labelText: 'Rubro (Opcional)',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: FlutterFlowTheme.of(context).grayLight,
                         ),
-                    hintText: 'What types of allergies do you have..',
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0x98FFFFFF),
@@ -352,81 +334,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                 ).animated([animationsMap['textFieldOnPageLoadAnimation3']]),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Your Birth Sex',
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ).animated([animationsMap['textOnPageLoadAnimation2']]),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FlutterFlowRadioButton(
-                      options: ['Male', 'Female', 'Undisclosed'],
-                      onChanged: (value) {
-                        setState(() => radioButtonValue = value);
-                      },
-                      optionHeight: 25,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: FlutterFlowTheme.of(context).textColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                      textPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                      buttonPosition: RadioButtonPosition.left,
-                      direction: Axis.horizontal,
-                      radioButtonColor:
-                          FlutterFlowTheme.of(context).primaryColor,
-                      toggleable: false,
-                      horizontalAlignment: WrapAlignment.start,
-                      verticalAlignment: WrapCrossAlignment.start,
-                    ).animated(
-                        [animationsMap['radioButtonOnPageLoadAnimation']]),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddAnotherProfileWidget(),
-                      ),
-                    );
-                  },
-                  text: 'Add Another Profile',
-                  icon: Icon(
-                    Icons.add_rounded,
-                    size: 15,
-                  ),
-                  options: FFButtonOptions(
-                    width: 230,
-                    height: 56,
-                    color: FlutterFlowTheme.of(context).darkBackground,
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Lexend Deca',
-                          color: FlutterFlowTheme.of(context).textColor,
-                        ),
-                    elevation: 3,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: 8,
-                  ),
-                ).animated([animationsMap['buttonOnPageLoadAnimation1']]),
-              ),
-              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: StreamBuilder<UsersRecord>(
                   stream: UsersRecord.getDocument(currentUserReference),
@@ -449,9 +356,9 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                       onPressed: () async {
                         final usersUpdateData = createUsersRecordData(
                           displayName: yourNameController.text,
-                          age: int.parse(yourAgeController.text),
-                          ailments: ailmentsController.text,
-                          userSex: radioButtonValue,
+                          businessName: bussinesController.text,
+                          bussinesLine: bussinesLineController.text,
+                          photoUrl: uploadedFileUrl,
                         );
                         await buttonLoginUsersRecord.reference
                             .update(usersUpdateData);
@@ -463,7 +370,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                           ),
                         );
                       },
-                      text: 'Complete Profile',
+                      text: 'Guardar',
                       options: FFButtonOptions(
                         width: 230,
                         height: 56,
@@ -480,7 +387,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                         ),
                         borderRadius: 8,
                       ),
-                    ).animated([animationsMap['buttonOnPageLoadAnimation2']]);
+                    ).animated([animationsMap['buttonOnPageLoadAnimation']]);
                   },
                 ),
               ),

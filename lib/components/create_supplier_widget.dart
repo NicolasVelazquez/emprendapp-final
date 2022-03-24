@@ -23,6 +23,7 @@ class CreateSupplierWidget extends StatefulWidget {
 
 class _CreateSupplierWidgetState extends State<CreateSupplierWidget>
     with TickerProviderStateMixin {
+  TextEditingController addressController;
   TextEditingController descriptionController;
   TextEditingController nameController;
   TextEditingController telephoneController;
@@ -82,6 +83,19 @@ class _CreateSupplierWidgetState extends State<CreateSupplierWidget>
         opacity: 1,
       ),
     ),
+    'textFieldOnPageLoadAnimation5': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 600,
+      fadeIn: true,
+      initialState: AnimationState(
+        offset: Offset(0, 9),
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        opacity: 1,
+      ),
+    ),
     'buttonOnPageLoadAnimation1': AnimationInfo(
       curve: Curves.bounceOut,
       trigger: AnimationTrigger.onPageLoad,
@@ -123,6 +137,7 @@ class _CreateSupplierWidgetState extends State<CreateSupplierWidget>
       this,
     );
 
+    addressController = TextEditingController();
     descriptionController = TextEditingController();
     nameController = TextEditingController();
     telephoneController = TextEditingController();
@@ -235,7 +250,7 @@ class _CreateSupplierWidgetState extends State<CreateSupplierWidget>
                                         ),
                                     validator: (val) {
                                       if (val.isEmpty) {
-                                        return 'Field is required';
+                                        return 'Campo requerido';
                                       }
                                       if (val.length < 2) {
                                         return 'Debe tener al menos 2 caracteres';
@@ -387,6 +402,52 @@ class _CreateSupplierWidgetState extends State<CreateSupplierWidget>
                                         'textFieldOnPageLoadAnimation4']
                                   ]),
                                 ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 16, 0, 0),
+                                  child: TextFormField(
+                                    controller: addressController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Dirección',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .background,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .background,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .darkBackground,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              20, 24, 0, 24),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textColor,
+                                        ),
+                                    keyboardType: TextInputType.streetAddress,
+                                  ).animated([
+                                    animationsMap[
+                                        'textFieldOnPageLoadAnimation5']
+                                  ]),
+                                ),
                               ],
                             ),
                           ),
@@ -438,6 +499,7 @@ class _CreateSupplierWidgetState extends State<CreateSupplierWidget>
                                       int.parse(telephoneController.text),
                                   email: emailController.text,
                                   uid: currentUserUid,
+                                  address: addressController.text,
                                 );
                                 await SuppliersRecord.collection
                                     .doc()

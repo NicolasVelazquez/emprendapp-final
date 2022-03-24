@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/appointments_record.dart';
 import 'schema/products_record.dart';
 import 'schema/orders_record.dart';
 import 'schema/suppliers_record.dart';
@@ -19,7 +18,6 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/appointments_record.dart';
 export 'schema/products_record.dart';
 export 'schema/orders_record.dart';
 export 'schema/suppliers_record.dart';
@@ -40,23 +38,6 @@ Future<List<UsersRecord>> queryUsersRecordOnce(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(UsersRecord.collection, UsersRecord.serializer,
-        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
-
-/// Functions to query AppointmentsRecords (as a Stream and as a Future).
-Stream<List<AppointmentsRecord>> queryAppointmentsRecord(
-        {Query Function(Query) queryBuilder,
-        int limit = -1,
-        bool singleRecord = false}) =>
-    queryCollection(
-        AppointmentsRecord.collection, AppointmentsRecord.serializer,
-        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
-
-Future<List<AppointmentsRecord>> queryAppointmentsRecordOnce(
-        {Query Function(Query) queryBuilder,
-        int limit = -1,
-        bool singleRecord = false}) =>
-    queryCollectionOnce(
-        AppointmentsRecord.collection, AppointmentsRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 /// Functions to query ProductsRecords (as a Stream and as a Future).

@@ -2,6 +2,8 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/create_expense_widget.dart';
 import '../components/edit_expense_widget.dart';
+import '../components/empty_list_widget.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -18,9 +20,58 @@ class ExpensesWidget extends StatefulWidget {
   _ExpensesWidgetState createState() => _ExpensesWidgetState();
 }
 
-class _ExpensesWidgetState extends State<ExpensesWidget> {
+class _ExpensesWidgetState extends State<ExpensesWidget>
+    with TickerProviderStateMixin {
   String choiceChipsValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final animationsMap = {
+    'textOnActionTriggerAnimation': AnimationInfo(
+      curve: Curves.elasticOut,
+      trigger: AnimationTrigger.onActionTrigger,
+      duration: 600,
+      initialState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 0.5,
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 1,
+      ),
+    ),
+    'textOnPageLoadAnimation': AnimationInfo(
+      curve: Curves.elasticOut,
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 600,
+      fadeIn: true,
+      initialState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 0.5,
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 1,
+      ),
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    startPageLoadAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
+      this,
+    );
+    setupTriggerAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onActionTrigger),
+      this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +194,10 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryColor,
                                     ),
-                              ),
+                              ).animated([
+                                animationsMap['textOnActionTriggerAnimation'],
+                                animationsMap['textOnPageLoadAnimation']
+                              ]),
                             ),
                             Padding(
                               padding:
@@ -225,9 +279,8 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
                         snapshot.data;
                     if (listViewExpensesRecordList.isEmpty) {
                       return Center(
-                        child: Image.asset(
-                          'assets/images/ray-hennessy-OjE4RtaibFc-unsplash.jpg',
-                          fit: BoxFit.cover,
+                        child: EmptyListWidget(
+                          item: 'Gastos',
                         ),
                       );
                     }
@@ -346,16 +399,15 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
                                               .bodyText1,
                                         ),
                                         Text(
-                                          valueOrDefault<String>(
+                                          '\$${valueOrDefault<String>(
                                             formatNumber(
                                               listViewExpensesRecord.amount,
                                               formatType: FormatType.decimal,
                                               decimalType:
-                                                  DecimalType.commaDecimal,
-                                              currency: '\$',
+                                                  DecimalType.automatic,
                                             ),
                                             '0',
-                                          ),
+                                          )}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText2
                                               .override(

@@ -755,7 +755,7 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  10, 10, 10, 10),
+                                                  10, 5, 10, 5),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -802,7 +802,6 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                           context)
                                                       .bodyText2,
                                                   textAlign: TextAlign.center,
-                                                  maxLines: 50,
                                                 ),
                                               ),
                                               FlutterFlowIconButton(

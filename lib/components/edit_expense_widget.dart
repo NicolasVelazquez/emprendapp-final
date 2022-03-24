@@ -113,8 +113,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
         text: formatNumber(
       widget.expense.amount,
       formatType: FormatType.decimal,
-      decimalType: DecimalType.commaDecimal,
-      currency: '',
+      decimalType: DecimalType.automatic,
     ));
     descriptionController =
         TextEditingController(text: widget.expense.description);

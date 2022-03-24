@@ -23,6 +23,7 @@ class EditSupplierWidget extends StatefulWidget {
 
 class _EditSupplierWidgetState extends State<EditSupplierWidget>
     with TickerProviderStateMixin {
+  TextEditingController addressController;
   TextEditingController descriptionController;
   TextEditingController nameController;
   TextEditingController telephoneController;
@@ -82,6 +83,19 @@ class _EditSupplierWidgetState extends State<EditSupplierWidget>
         opacity: 1,
       ),
     ),
+    'textFieldOnPageLoadAnimation5': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 600,
+      fadeIn: true,
+      initialState: AnimationState(
+        offset: Offset(0, 9),
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        opacity: 1,
+      ),
+    ),
     'buttonOnPageLoadAnimation1': AnimationInfo(
       curve: Curves.bounceOut,
       trigger: AnimationTrigger.onPageLoad,
@@ -123,6 +137,7 @@ class _EditSupplierWidgetState extends State<EditSupplierWidget>
       this,
     );
 
+    addressController = TextEditingController(text: widget.supplier.address);
     descriptionController =
         TextEditingController(text: widget.supplier.description);
     nameController = TextEditingController(text: widget.supplier.name);
@@ -367,6 +382,47 @@ class _EditSupplierWidgetState extends State<EditSupplierWidget>
                                         'textFieldOnPageLoadAnimation4']
                                   ]),
                                 ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 16, 0, 0),
+                                  child: TextFormField(
+                                    controller: addressController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Dirección',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .background,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .background,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .darkBackground,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              20, 24, 0, 24),
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText2,
+                                    keyboardType: TextInputType.streetAddress,
+                                  ).animated([
+                                    animationsMap[
+                                        'textFieldOnPageLoadAnimation5']
+                                  ]),
+                                ),
                               ],
                             ),
                           ),
@@ -413,10 +469,10 @@ class _EditSupplierWidgetState extends State<EditSupplierWidget>
                                 final suppliersUpdateData =
                                     createSuppliersRecordData(
                                   name: nameController.text,
-                                  telephone:
-                                      int.parse(telephoneController.text),
+                                  telephone: int.parse(addressController.text),
                                   email: emailController.text,
                                   description: descriptionController.text,
+                                  address: addressController.text,
                                 );
                                 await widget.supplier.reference
                                     .update(suppliersUpdateData);

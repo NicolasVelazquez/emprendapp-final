@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,20 +79,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40),
                           ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  homePageUsersRecord.photoUrl,
-                                  'https://picsum.photos/seed/771/600',
-                                ),
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: CachedNetworkImage(
+                              imageUrl: valueOrDefault<String>(
+                                homePageUsersRecord.photoUrl,
+                                'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                               ),
                             ),
                           ),
@@ -224,12 +222,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   onTap: () async {
                                     await Navigator.push(
                                       context,
-                                      PageTransition(
-                                        type: PageTransitionType.leftToRight,
-                                        duration: Duration(milliseconds: 1),
-                                        reverseDuration:
-                                            Duration(milliseconds: 1),
-                                        child:
+                                      MaterialPageRoute(
+                                        builder: (context) =>
                                             NavBarPage(initialPage: 'products'),
                                       ),
                                     );
@@ -553,13 +547,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   onTap: () async {
                                     await Navigator.push(
                                       context,
-                                      PageTransition(
-                                        type: PageTransitionType.scale,
-                                        alignment: Alignment.bottomCenter,
-                                        duration: Duration(milliseconds: 1),
-                                        reverseDuration:
-                                            Duration(milliseconds: 1),
-                                        child:
+                                      MaterialPageRoute(
+                                        builder: (context) =>
                                             NavBarPage(initialPage: 'orders'),
                                       ),
                                     );

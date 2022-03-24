@@ -75,7 +75,9 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: _locale,
-      supportedLocales: const [Locale('en', '')],
+      supportedLocales: const [
+        Locale('es', ''),
+      ],
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
@@ -217,9 +219,9 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             activeIcon: Icon(
               Icons.account_circle_rounded,
-              size: 24,
+              size: 30,
             ),
-            label: 'Profile',
+            label: 'Perfil',
             tooltip: '',
           )
         ],

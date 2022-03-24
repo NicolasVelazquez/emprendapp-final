@@ -127,8 +127,7 @@ class _EditOrderWidgetState extends State<EditOrderWidget>
         text: formatNumber(
       widget.order.amount,
       formatType: FormatType.decimal,
-      decimalType: DecimalType.commaDecimal,
-      currency: '',
+      decimalType: DecimalType.automatic,
     ));
     descriptionController =
         TextEditingController(text: widget.order.description);

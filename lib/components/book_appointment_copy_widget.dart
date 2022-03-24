@@ -231,7 +231,8 @@ class _BookAppointmentCopyWidgetState extends State<BookAppointmentCopyWidget>
                   child: FlutterFlowDropDown(
                     initialOption: networkDropDownValue ??=
                         widget.post.socialNetwork,
-                    options: ['Instagram', 'Facebook', 'TikTok'].toList(),
+                    options:
+                        ['Instagram', 'Facebook', 'TikTok', 'Twitter'].toList(),
                     onChanged: (val) =>
                         setState(() => networkDropDownValue = val),
                     width: MediaQuery.of(context).size.width * 0.9,

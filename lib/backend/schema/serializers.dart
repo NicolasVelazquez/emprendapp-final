@@ -1,7 +1,6 @@
 import 'package:built_value/standard_json_plugin.dart';
 
 import 'users_record.dart';
-import 'appointments_record.dart';
 import 'products_record.dart';
 import 'orders_record.dart';
 import 'suppliers_record.dart';
@@ -19,7 +18,6 @@ const kDocumentReferenceField = 'Document__Reference__Field';
 
 @SerializersFor(const [
   UsersRecord,
-  AppointmentsRecord,
   ProductsRecord,
   OrdersRecord,
   SuppliersRecord,

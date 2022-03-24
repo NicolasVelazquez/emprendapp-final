@@ -3,7 +3,6 @@ import '../components/edit_product_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -57,25 +56,37 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFEEEEEE),
-                      ),
-                      child: Align(
-                        alignment: AlignmentDirectional(-1, -1),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
-                          child: InkWell(
-                            onTap: () async {
-                              Navigator.pop(context);
-                            },
-                            child: FaIcon(
-                              FontAwesomeIcons.chevronCircleLeft,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              size: 32,
+                      decoration: BoxDecoration(),
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            valueOrDefault<String>(
+                              productDetailProductsRecord.image,
+                              'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 1,
+                            fit: BoxFit.cover,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(-1, -1),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15, 15, 15, 15),
+                              child: InkWell(
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                },
+                                child: FaIcon(
+                                  FontAwesomeIcons.chevronCircleLeft,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
+                                  size: 32,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     Padding(

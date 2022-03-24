@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/create_order_widget.dart';
 import '../components/edit_order_widget.dart';
+import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -133,9 +134,8 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                           snapshot.data;
                       if (listViewAllOrdersRecordList.isEmpty) {
                         return Center(
-                          child: Image.asset(
-                            'assets/images/ray-hennessy-OjE4RtaibFc-unsplash.jpg',
-                            fit: BoxFit.cover,
+                          child: EmptyListWidget(
+                            item: 'Pedidos',
                           ),
                         );
                       }
@@ -292,16 +292,15 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                                               .fromSTEB(
                                                                   10, 0, 10, 0),
                                                       child: Text(
-                                                        formatNumber(
+                                                        '\$${formatNumber(
                                                           listViewAllOrdersRecord
                                                               .amount,
                                                           formatType: FormatType
                                                               .decimal,
                                                           decimalType:
                                                               DecimalType
-                                                                  .commaDecimal,
-                                                          currency: '',
-                                                        ),
+                                                                  .automatic,
+                                                        )}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -416,9 +415,8 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                           snapshot.data;
                       if (listViewPendingOrdersRecordList.isEmpty) {
                         return Center(
-                          child: Image.asset(
-                            'assets/images/ray-hennessy-OjE4RtaibFc-unsplash.jpg',
-                            fit: BoxFit.cover,
+                          child: EmptyListWidget(
+                            item: 'Pedidos',
                           ),
                         );
                       }
@@ -576,16 +574,15 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                                               .fromSTEB(
                                                                   10, 0, 10, 0),
                                                       child: Text(
-                                                        formatNumber(
+                                                        '\$${formatNumber(
                                                           listViewPendingOrdersRecord
                                                               .amount,
                                                           formatType: FormatType
                                                               .decimal,
                                                           decimalType:
                                                               DecimalType
-                                                                  .commaDecimal,
-                                                          currency: '',
-                                                        ),
+                                                                  .automatic,
+                                                        )}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

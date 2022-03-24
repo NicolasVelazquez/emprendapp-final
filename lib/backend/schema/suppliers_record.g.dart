@@ -55,6 +55,13 @@ class _$SuppliersRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.address;
+    if (value != null) {
+      result
+        ..add('address')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -98,6 +105,10 @@ class _$SuppliersRecordSerializer
           result.description = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'address':
+          result.address = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -123,6 +134,8 @@ class _$SuppliersRecord extends SuppliersRecord {
   @override
   final String description;
   @override
+  final String address;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$SuppliersRecord([void Function(SuppliersRecordBuilder) updates]) =>
@@ -134,6 +147,7 @@ class _$SuppliersRecord extends SuppliersRecord {
       this.email,
       this.uid,
       this.description,
+      this.address,
       this.reference})
       : super._();
 
@@ -154,6 +168,7 @@ class _$SuppliersRecord extends SuppliersRecord {
         email == other.email &&
         uid == other.uid &&
         description == other.description &&
+        address == other.address &&
         reference == other.reference;
   }
 
@@ -162,10 +177,12 @@ class _$SuppliersRecord extends SuppliersRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, name.hashCode), telephone.hashCode),
-                    email.hashCode),
-                uid.hashCode),
-            description.hashCode),
+                $jc(
+                    $jc($jc($jc(0, name.hashCode), telephone.hashCode),
+                        email.hashCode),
+                    uid.hashCode),
+                description.hashCode),
+            address.hashCode),
         reference.hashCode));
   }
 
@@ -177,6 +194,7 @@ class _$SuppliersRecord extends SuppliersRecord {
           ..add('email', email)
           ..add('uid', uid)
           ..add('description', description)
+          ..add('address', address)
           ..add('reference', reference))
         .toString();
   }
@@ -206,6 +224,10 @@ class SuppliersRecordBuilder
   String get description => _$this._description;
   set description(String description) => _$this._description = description;
 
+  String _address;
+  String get address => _$this._address;
+  set address(String address) => _$this._address = address;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -223,6 +245,7 @@ class SuppliersRecordBuilder
       _email = $v.email;
       _uid = $v.uid;
       _description = $v.description;
+      _address = $v.address;
       _reference = $v.reference;
       _$v = null;
     }
@@ -249,6 +272,7 @@ class SuppliersRecordBuilder
             email: email,
             uid: uid,
             description: description,
+            address: address,
             reference: reference);
     replace(_$result);
     return _$result;
