@@ -5,10 +5,8 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EditProfileWidget extends StatefulWidget {
   const EditProfileWidget({
@@ -170,12 +168,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         labelText: 'Nombre',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: Color(0x98FFFFFF),
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -198,7 +196,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
+                            fontFamily: 'Montserrat',
                             color: FlutterFlowTheme.of(context).textColor,
                           ),
                     ),
@@ -212,12 +210,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         labelText: 'Email',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: Color(0x98FFFFFF),
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -240,7 +238,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
+                            fontFamily: 'Montserrat',
                             color: FlutterFlowTheme.of(context).primaryColor,
                             fontWeight: FontWeight.w600,
                           ),
@@ -259,12 +257,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         labelText: 'Emprendimiento',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: Color(0x98FFFFFF),
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -287,7 +285,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
+                            fontFamily: 'Montserrat',
                             color: FlutterFlowTheme.of(context).textColor,
                           ),
                     ),
@@ -304,12 +302,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         labelText: 'Rubro',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).grayLight,
                                 ),
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: Color(0x98FFFFFF),
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -332,7 +330,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
+                            fontFamily: 'Montserrat',
                             color: FlutterFlowTheme.of(context).textColor,
                           ),
                     ),
@@ -359,7 +357,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).textColor,
                                 ),
                         elevation: 3,

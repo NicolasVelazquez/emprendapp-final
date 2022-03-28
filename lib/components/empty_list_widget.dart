@@ -1,8 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EmptyListWidget extends StatefulWidget {
   const EmptyListWidget({
@@ -40,7 +38,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
                   'Parece que no tenes ',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Lexend Deca',
+                        fontFamily: 'Montserrat',
                         color: FlutterFlowTheme.of(context).textColor,
                       ),
                 ),
@@ -51,7 +49,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
                   )}',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Lexend Deca',
+                        fontFamily: 'Montserrat',
                         color: FlutterFlowTheme.of(context).primaryColor,
                       ),
                 ),

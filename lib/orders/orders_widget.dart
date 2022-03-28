@@ -6,11 +6,11 @@ import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OrdersWidget extends StatefulWidget {
   const OrdersWidget({Key key}) : super(key: key);
@@ -41,13 +41,18 @@ class _OrdersWidgetState extends State<OrdersWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'homePage'),
+              ),
+            );
           },
         ),
         title: Text(
           'Pedidos',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Lexend Deca',
+                fontFamily: 'Poppins',
                 color: Colors.white,
                 fontSize: 22,
               ),
@@ -98,7 +103,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                   title: Text(
                     'Mostrar sólo pendientes',
                     style: FlutterFlowTheme.of(context).bodyText2.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: Colors.white,
                         ),
                   ),
@@ -181,7 +186,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle2
                                                 .override(
-                                                  fontFamily: 'Lexend Deca',
+                                                  fontFamily: 'Montserrat',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .tertiaryColor,
@@ -307,7 +312,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                                                 .bodyText2
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -337,7 +342,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                                         context)
                                                     .bodyText1
                                                     .override(
-                                                      fontFamily: 'Lexend Deca',
+                                                      fontFamily: 'Montserrat',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -463,7 +468,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle2
                                                 .override(
-                                                  fontFamily: 'Lexend Deca',
+                                                  fontFamily: 'Montserrat',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .tertiaryColor,
@@ -589,7 +594,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                                                 .bodyText2
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -620,7 +625,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                                                         context)
                                                     .bodyText1
                                                     .override(
-                                                      fontFamily: 'Lexend Deca',
+                                                      fontFamily: 'Montserrat',
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)

@@ -1,12 +1,10 @@
 import '../auth/auth_util.dart';
 import '../complete_profile/complete_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../forgot_password/forgot_password_widget.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageWidget extends StatefulWidget {
@@ -60,6 +58,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       height: MediaQuery.of(context).size.height * 1,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).background,
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: Image.asset(
+                            'assets/images/layered-waves-haikei_(1).png',
+                          ).image,
+                        ),
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
@@ -68,19 +72,45 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 24, 0, 20),
+                                  EdgeInsetsDirectional.fromSTEB(0, 24, 0, 10),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    'assets/images/ray-hennessy-OjE4RtaibFc-unsplash.jpg',
-                                    width: 200,
-                                    height: 200,
+                                    'assets/images/wallet_green.png',
+                                    width: 100,
+                                    height: 100,
                                     fit: BoxFit.cover,
                                   ),
                                 ],
                               ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Emprend',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textColor,
+                                      ),
+                                ),
+                                Text(
+                                  'app',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
+                                ),
+                              ],
                             ),
                             Expanded(
                               child: Padding(
@@ -142,7 +172,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -152,7 +182,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -201,7 +231,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -228,7 +258,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -238,7 +268,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -304,7 +334,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -356,7 +386,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .subtitle2
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .textColor,
@@ -402,7 +432,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .subtitle2
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Colors
                                                                         .white,
                                                                   ),
@@ -447,7 +477,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -457,7 +487,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -506,7 +536,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -533,7 +563,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -543,7 +573,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -609,7 +639,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -636,7 +666,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -646,7 +676,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: Color(
                                                                         0x98FFFFFF),
                                                                   ),
@@ -712,7 +742,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -776,7 +806,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .subtitle2
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Lexend Deca',
+                                                                        'Montserrat',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .textColor,

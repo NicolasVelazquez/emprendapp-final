@@ -1,13 +1,8 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EditSupplierWidget extends StatefulWidget {
   const EditSupplierWidget({
@@ -447,7 +442,7 @@ class _EditSupplierWidgetState extends State<EditSupplierWidget>
                                 textStyle: FlutterFlowTheme.of(context)
                                     .subtitle2
                                     .override(
-                                      fontFamily: 'Lexend Deca',
+                                      fontFamily: 'Montserrat',
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -487,7 +482,7 @@ class _EditSupplierWidgetState extends State<EditSupplierWidget>
                                 textStyle: FlutterFlowTheme.of(context)
                                     .subtitle2
                                     .override(
-                                      fontFamily: 'Lexend Deca',
+                                      fontFamily: 'Montserrat',
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                     ),

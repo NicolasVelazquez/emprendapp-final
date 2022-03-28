@@ -7,7 +7,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -127,7 +126,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   color: Colors.transparent,
                                   elevation: 3,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(14),
+                                    borderRadius: BorderRadius.circular(19),
                                   ),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width,
@@ -137,8 +136,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               0.12,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF303030),
-                                      borderRadius: BorderRadius.circular(14),
+                                      color: FlutterFlowTheme.of(context)
+                                          .background,
+                                      borderRadius: BorderRadius.circular(19),
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -199,7 +199,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .bodyText2
                                                               .override(
                                                                 fontFamily:
-                                                                    'Lexend Deca',
+                                                                    'Montserrat',
                                                                 color: Color(
                                                                     0xFFF9C870),
                                                               ),
@@ -232,7 +232,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: Colors.transparent,
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(19),
                                     ),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
@@ -242,8 +242,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 0.12,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF303030),
-                                        borderRadius: BorderRadius.circular(8),
+                                        color: FlutterFlowTheme.of(context)
+                                            .background,
+                                        borderRadius: BorderRadius.circular(19),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -305,7 +306,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .bodyText2
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -336,98 +337,92 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     );
                                   },
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    elevation: 3,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    constraints: BoxConstraints(
+                                      maxHeight:
+                                          MediaQuery.of(context).size.height *
+                                              0.12,
                                     ),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      constraints: BoxConstraints(
-                                        maxHeight:
-                                            MediaQuery.of(context).size.height *
-                                                0.12,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFF303030),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 5, 5, 5),
-                                            child: Card(
-                                              clipBehavior:
-                                                  Clip.antiAliasWithSaveLayer,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(14),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(16, 16, 16, 16),
-                                                child: Icon(
-                                                  FFIcons.knetwork,
-                                                  color: Colors.black,
-                                                  size: 40,
-                                                ),
-                                              ),
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .background,
+                                      borderRadius: BorderRadius.circular(19),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5, 5, 5, 5),
+                                          child: Card(
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(14),
                                             ),
-                                          ),
-                                          Expanded(
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(12, 20, 12, 0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Redes Sociales',
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .title3,
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 8),
-                                                      child: AutoSizeText(
-                                                        'Seguí las publicaciones en tus redes',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Lexend Deca',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiaryColor,
-                                                                  fontSize: 14,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                  .fromSTEB(16, 16, 16, 16),
+                                              child: Icon(
+                                                FFIcons.knetwork,
+                                                color: Colors.black,
+                                                size: 40,
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 20, 12, 0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Redes Sociales',
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .title3,
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 0, 8),
+                                                    child: AutoSizeText(
+                                                      'Seguí las publicaciones en tus redes',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiaryColor,
+                                                                fontSize: 14,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -449,7 +444,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: Colors.transparent,
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(19),
                                     ),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
@@ -459,8 +454,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 0.12,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF303030),
-                                        borderRadius: BorderRadius.circular(8),
+                                        color: FlutterFlowTheme.of(context)
+                                            .background,
+                                        borderRadius: BorderRadius.circular(19),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -522,7 +518,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .bodyText2
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,
@@ -557,7 +553,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: Colors.transparent,
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(19),
                                     ),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
@@ -567,8 +563,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 0.12,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF303030),
-                                        borderRadius: BorderRadius.circular(8),
+                                        color: FlutterFlowTheme.of(context)
+                                            .background,
+                                        borderRadius: BorderRadius.circular(19),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -628,7 +625,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .bodyText2
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiaryColor,

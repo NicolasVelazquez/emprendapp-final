@@ -7,10 +7,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import '../main.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CompleteProfileWidget extends StatefulWidget {
   const CompleteProfileWidget({Key key}) : super(key: key);
@@ -143,7 +141,14 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
-        decoration: BoxDecoration(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: Image.asset(
+              'assets/images/layered-waves-haikei_(1).png',
+            ).image,
+          ),
+        ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -220,11 +225,11 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                   decoration: InputDecoration(
                     labelText: 'Tu Nombre',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).grayLight,
                         ),
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: Color(0x98FFFFFF),
                         ),
                     enabledBorder: OutlineInputBorder(
@@ -247,7 +252,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                         EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Lexend Deca',
+                        fontFamily: 'Montserrat',
                         color: FlutterFlowTheme.of(context).textColor,
                       ),
                 ).animated([animationsMap['textFieldOnPageLoadAnimation1']]),
@@ -260,12 +265,12 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                   decoration: InputDecoration(
                     labelText: 'Nombre del Emprendimiento',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).grayLight,
                         ),
                     hintText: 'Nombre del emprendimiento',
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: Color(0x98FFFFFF),
                         ),
                     enabledBorder: OutlineInputBorder(
@@ -288,7 +293,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                         EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Lexend Deca',
+                        fontFamily: 'Montserrat',
                         color: FlutterFlowTheme.of(context).textColor,
                       ),
                 ).animated([animationsMap['textFieldOnPageLoadAnimation2']]),
@@ -301,11 +306,11 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                   decoration: InputDecoration(
                     labelText: 'Rubro (Opcional)',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).grayLight,
                         ),
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: Color(0x98FFFFFF),
                         ),
                     enabledBorder: OutlineInputBorder(
@@ -328,7 +333,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                         EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Lexend Deca',
+                        fontFamily: 'Montserrat',
                         color: FlutterFlowTheme.of(context).textColor,
                       ),
                 ).animated([animationsMap['textFieldOnPageLoadAnimation3']]),
@@ -377,7 +382,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget>
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
+                                  fontFamily: 'Montserrat',
                                   color: FlutterFlowTheme.of(context).textColor,
                                 ),
                         elevation: 3,

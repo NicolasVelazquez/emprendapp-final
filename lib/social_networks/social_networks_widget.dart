@@ -6,12 +6,12 @@ import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SocialNetworksWidget extends StatefulWidget {
   const SocialNetworksWidget({Key key}) : super(key: key);
@@ -41,13 +41,18 @@ class _SocialNetworksWidgetState extends State<SocialNetworksWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'homePage'),
+              ),
+            );
           },
         ),
         title: Text(
           'Redes Sociales',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Lexend Deca',
+                fontFamily: 'Poppins',
                 color: Colors.white,
                 fontSize: 22,
               ),
@@ -259,7 +264,7 @@ class _SocialNetworksWidgetState extends State<SocialNetworksWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
-                                                  fontFamily: 'Lexend Deca',
+                                                  fontFamily: 'Montserrat',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .alternate,
@@ -309,7 +314,7 @@ class _SocialNetworksWidgetState extends State<SocialNetworksWidget> {
                                                               .bodyText2
                                                               .override(
                                                                 fontFamily:
-                                                                    'Lexend Deca',
+                                                                    'Montserrat',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
@@ -337,7 +342,7 @@ class _SocialNetworksWidgetState extends State<SocialNetworksWidget> {
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Lexend Deca',
+                                                                      'Montserrat',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .alternate,

@@ -1,31 +1,34 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CreateProduct1Widget extends StatefulWidget {
-  const CreateProduct1Widget({Key key}) : super(key: key);
+class CreateProductFromDraftWidget extends StatefulWidget {
+  const CreateProductFromDraftWidget({
+    Key key,
+    this.draft,
+  }) : super(key: key);
+
+  final DraftsRecord draft;
 
   @override
-  _CreateProduct1WidgetState createState() => _CreateProduct1WidgetState();
+  _CreateProductFromDraftWidgetState createState() =>
+      _CreateProductFromDraftWidgetState();
 }
 
-class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
-    with TickerProviderStateMixin {
+class _CreateProductFromDraftWidgetState
+    extends State<CreateProductFromDraftWidget> with TickerProviderStateMixin {
   PageController pageViewController;
-  String uploadedFileUrl = '';
-  TextEditingController priceController;
   TextEditingController descriptionController;
   TextEditingController titleController;
+  TextEditingController priceController;
   TextEditingController supplieInputController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -111,8 +114,9 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
       this,
     );
 
-    descriptionController = TextEditingController();
-    titleController = TextEditingController();
+    descriptionController =
+        TextEditingController(text: widget.draft.description);
+    titleController = TextEditingController(text: widget.draft.title);
     priceController = TextEditingController();
     supplieInputController = TextEditingController();
   }
@@ -201,7 +205,7 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 8, 0, 0),
                                             child: Text(
-                                              'Completa los sigueintes datos para cargar un nuevo producto.',
+                                              'Completa los sigueintes datos para crear un nuevo producto.',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -226,14 +230,14 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                   image: CachedNetworkImage(
                                                     imageUrl:
                                                         valueOrDefault<String>(
-                                                      uploadedFileUrl,
+                                                      widget.draft.image,
                                                       'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                                     ),
                                                     fit: BoxFit.contain,
                                                   ),
                                                   allowRotation: false,
                                                   tag: valueOrDefault<String>(
-                                                    uploadedFileUrl,
+                                                    widget.draft.image,
                                                     'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                                   ),
                                                   useHeroAnimation: true,
@@ -243,7 +247,7 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                           },
                                           child: Hero(
                                             tag: valueOrDefault<String>(
-                                              uploadedFileUrl,
+                                              widget.draft.image,
                                               'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                             ),
                                             transitionOnUserGestures: true,
@@ -253,11 +257,11 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                               child: CachedNetworkImage(
                                                 imageUrl:
                                                     valueOrDefault<String>(
-                                                  uploadedFileUrl,
+                                                  widget.draft.image,
                                                   'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                                 ),
-                                                width: 200,
-                                                height: 200,
+                                                width: 150,
+                                                height: 150,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -271,70 +275,6 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              FlutterFlowIconButton(
-                                                borderColor: Colors.transparent,
-                                                borderRadius: 0,
-                                                borderWidth: 0,
-                                                buttonSize: 60,
-                                                icon: Icon(
-                                                  Icons
-                                                      .add_photo_alternate_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .textColor,
-                                                  size: 30,
-                                                ),
-                                                onPressed: () async {
-                                                  final selectedMedia =
-                                                      await selectMediaWithSourceBottomSheet(
-                                                    context: context,
-                                                    allowPhoto: true,
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .darkBackground,
-                                                    textColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .grayLight,
-                                                  );
-                                                  if (selectedMedia != null &&
-                                                      validateFileFormat(
-                                                          selectedMedia
-                                                              .storagePath,
-                                                          context)) {
-                                                    showUploadMessage(
-                                                      context,
-                                                      'Uploading file...',
-                                                      showLoading: true,
-                                                    );
-                                                    final downloadUrl =
-                                                        await uploadData(
-                                                            selectedMedia
-                                                                .storagePath,
-                                                            selectedMedia
-                                                                .bytes);
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .hideCurrentSnackBar();
-                                                    if (downloadUrl != null) {
-                                                      setState(() =>
-                                                          uploadedFileUrl =
-                                                              downloadUrl);
-                                                      showUploadMessage(
-                                                        context,
-                                                        'Success!',
-                                                      );
-                                                    } else {
-                                                      showUploadMessage(
-                                                        context,
-                                                        'Failed to upload media',
-                                                      );
-                                                      return;
-                                                    }
-                                                  }
-                                                },
-                                              ),
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -417,13 +357,6 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                               .subtitle2,
                                                       keyboardType:
                                                           TextInputType.number,
-                                                      validator: (val) {
-                                                        if (val.isEmpty) {
-                                                          return 'Field is required';
-                                                        }
-
-                                                        return null;
-                                                      },
                                                     ).animated([
                                                       animationsMap[
                                                           'textFieldOnPageLoadAnimation1']
@@ -496,13 +429,6 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .subtitle2,
-                                                  validator: (val) {
-                                                    if (val.isEmpty) {
-                                                      return 'Field is required';
-                                                    }
-
-                                                    return null;
-                                                  },
                                                 ).animated([
                                                   animationsMap[
                                                       'textFieldOnPageLoadAnimation2']
@@ -572,13 +498,6 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                   maxLines: 2,
                                                   keyboardType:
                                                       TextInputType.multiline,
-                                                  validator: (val) {
-                                                    if (val.isEmpty) {
-                                                      return 'Field is required';
-                                                    }
-
-                                                    return null;
-                                                  },
                                                 ).animated([
                                                   animationsMap[
                                                       'textFieldOnPageLoadAnimation3']
@@ -683,7 +602,7 @@ class _CreateProduct1WidgetState extends State<CreateProduct1Widget>
                                                           .text,
                                                   price: double.parse(
                                                       priceController.text),
-                                                  image: uploadedFileUrl,
+                                                  image: widget.draft.image,
                                                   uid: currentUserUid,
                                                 ),
                                                 'supplies':

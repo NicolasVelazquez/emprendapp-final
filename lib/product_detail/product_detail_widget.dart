@@ -3,11 +3,9 @@ import '../components/edit_product_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetailWidget extends StatefulWidget {
   const ProductDetailWidget({
@@ -101,7 +99,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                               textAlign: TextAlign.center,
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Poppins',
                                         fontWeight: FontWeight.bold,
                                       ),
                             ),
@@ -184,7 +182,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .subtitle2
                               .override(
-                                fontFamily: 'Lexend Deca',
+                                fontFamily: 'Montserrat',
                                 color: FlutterFlowTheme.of(context).textColor,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -212,7 +210,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .subtitle2
                               .override(
-                                fontFamily: 'Lexend Deca',
+                                fontFamily: 'Montserrat',
                                 color: FlutterFlowTheme.of(context).textColor,
                                 fontWeight: FontWeight.w600,
                               ),

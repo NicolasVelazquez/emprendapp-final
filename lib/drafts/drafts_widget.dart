@@ -3,12 +3,13 @@ import '../backend/backend.dart';
 import '../components/create_draft_widget.dart';
 import '../components/edit_draft_widget.dart';
 import '../components/empty_list_widget.dart';
+import '../create_product_from_draft/create_product_from_draft_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DraftsWidget extends StatefulWidget {
   const DraftsWidget({Key key}) : super(key: key);
@@ -38,13 +39,18 @@ class _DraftsWidgetState extends State<DraftsWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'homePage'),
+              ),
+            );
           },
         ),
         title: Text(
           'Borradores',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Lexend Deca',
+                fontFamily: 'Poppins',
                 color: Colors.white,
                 fontSize: 22,
               ),
@@ -81,10 +87,18 @@ class _DraftsWidgetState extends State<DraftsWidget> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+          padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                child: Text(
+                  '(Mantené apretado un borrador para transformarlo en un producto)',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
               Expanded(
                 child: StreamBuilder<List<DraftsRecord>>(
                   stream: queryDraftsRecord(
@@ -146,6 +160,20 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                               },
                             );
                           },
+                          onLongPress: () async {
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.scale,
+                                alignment: Alignment.bottomCenter,
+                                duration: Duration(milliseconds: 500),
+                                reverseDuration: Duration(milliseconds: 500),
+                                child: CreateProductFromDraftWidget(
+                                  draft: gridViewDraftsRecord,
+                                ),
+                              ),
+                            );
+                          },
                           child: Stack(
                             children: [
                               Image.network(
@@ -159,34 +187,33 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                               ),
                               Align(
                                 alignment: AlignmentDirectional(0, -0.4),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
-                                  child: Text(
-                                    gridViewDraftsRecord.title,
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .subtitle1
-                                        .override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: FlutterFlowTheme.of(context)
-                                              .textColor,
-                                        ),
-                                  ),
+                                child: Text(
+                                  gridViewDraftsRecord.title,
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .textColor,
+                                      ),
                                 ),
                               ),
                               Align(
                                 alignment: AlignmentDirectional(0, 1),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
                                   constraints: BoxConstraints(
                                     maxHeight: 80,
                                   ),
                                   decoration: BoxDecoration(
                                     color: Color(0x2A302F2F),
                                   ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0, -0.05),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 10, 0, 0),
                                     child: Text(
                                       gridViewDraftsRecord.description,
                                       textAlign: TextAlign.center,
@@ -197,7 +224,7 @@ class _DraftsWidgetState extends State<DraftsWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(1.03, -1.06),
+                                alignment: AlignmentDirectional(1, -1),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
                                   borderRadius: 30,

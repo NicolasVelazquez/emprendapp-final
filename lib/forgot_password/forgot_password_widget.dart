@@ -1,10 +1,7 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPasswordWidget extends StatefulWidget {
   const ForgotPasswordWidget({Key key}) : super(key: key);
@@ -54,6 +51,12 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).background,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: Image.asset(
+              'assets/images/layered-waves-haikei.png',
+            ).image,
+          ),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -81,11 +84,11 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: Color(0x98FFFFFF),
                         ),
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: Color(0x98FFFFFF),
                         ),
                     enabledBorder: OutlineInputBorder(
@@ -108,7 +111,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Lexend Deca',
+                        fontFamily: 'Montserrat',
                         color: FlutterFlowTheme.of(context).tertiaryColor,
                       ),
                 ),
@@ -138,7 +141,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                     height: 60,
                     color: FlutterFlowTheme.of(context).primaryColor,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).textColor,
                         ),
                     elevation: 3,

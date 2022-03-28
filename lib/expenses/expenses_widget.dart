@@ -8,10 +8,10 @@ import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ExpensesWidget extends StatefulWidget {
   const ExpensesWidget({Key key}) : super(key: key);
@@ -91,13 +91,18 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'homePage'),
+              ),
+            );
           },
         ),
         title: Text(
           'Gastos',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Lexend Deca',
+                fontFamily: 'Poppins',
                 color: Colors.white,
                 fontSize: 22,
               ),
@@ -190,7 +195,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .title1
                                     .override(
-                                      fontFamily: 'Lexend Deca',
+                                      fontFamily: 'Poppins',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryColor,
                                     ),
@@ -219,7 +224,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyText2
                                       .override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Montserrat',
                                         color: Colors.black,
                                       ),
                                   iconColor:
@@ -233,7 +238,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Montserrat',
                                         color: FlutterFlowTheme.of(context)
                                             .grayLight,
                                       ),
@@ -411,7 +416,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText2
                                               .override(
-                                                fontFamily: 'Lexend Deca',
+                                                fontFamily: 'Montserrat',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryColor,

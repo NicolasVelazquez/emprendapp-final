@@ -1,34 +1,31 @@
-# Emprendapp - Software para gestión de pequeños emprendimientos
+# QuickOrganizer
 
-La aplicación está construida en Flutter, el framework para el lenguaje Dart de Google.
+A new Flutter project.
 
-La base de datos es una base no relacional, basada en colecciones en Firebase.
+## Getting Started
 
-Las colecciones son:
+FlutterFlow projects are built to run on the Flutter _stable_ release.
 
-[users, products, drafts, orders, expenses, posts]
+### IMPORTANT:
 
-La autenticación es vía Firebase Auth basada en dirección de email.
-
-Los activos estáticos como imágenes se almacenan en Firebase Storage.
-
-Los componentes de diseño e interfaz de usuario se basaron en [Material Design](https://material.io/design)
-
-## Ejecutar el proyecto:
-
-Es necesario tener la última versión _stable_ de Flutter.
-
-### IMPORTANTE:
-
-Ejecutar estos comandos por consola para preparar el esquema de firebase:
+For projects with Firestore integration, you must first run the following commands to ensure the project compiles:
 
 ```
 flutter pub get
 flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-Para ejecutar la aplicación, moverse al directorio del programa y ejecutar en una terminal:
+This command creates the generated files that parse each Record from Firestore into a schema object.
 
-```
-flutter run lib/main.dart
-```
+### Getting started continued:
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

@@ -11,7 +11,6 @@ import '../product_detail/product_detail_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProductsWidget extends StatefulWidget {
   const ProductsWidget({Key key}) : super(key: key);
@@ -236,7 +235,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .subtitle1
                                                                               .override(
-                                                                                fontFamily: 'Lexend Deca',
+                                                                                fontFamily: 'Poppins',
                                                                                 color: FlutterFlowTheme.of(context).textColor,
                                                                               ),
                                                                         ),
@@ -256,7 +255,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                                                                 currency: '',
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                    fontFamily: 'Lexend Deca',
+                                                                                    fontFamily: 'Montserrat',
                                                                                     color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                   ),
                                                                             ),
@@ -549,7 +548,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                                                           .bodyText1
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Lexend Deca',
+                                                                                'Montserrat',
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).secondaryColor,
                                                                           ),

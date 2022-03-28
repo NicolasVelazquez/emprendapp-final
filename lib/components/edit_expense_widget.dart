@@ -1,14 +1,10 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EditExpenseWidget extends StatefulWidget {
   const EditExpenseWidget({
@@ -193,7 +189,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
                           EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
                     ),
                     style: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).textColor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -234,7 +230,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
                           EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
                     ),
                     style: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).textColor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -296,7 +292,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Montserrat',
                                             fontSize: 12,
                                           ),
                                     ),
@@ -309,7 +305,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText2
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Montserrat',
                                             color: FlutterFlowTheme.of(context)
                                                 .tertiaryColor,
                                             fontWeight: FontWeight.w600,
@@ -359,7 +355,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
                           color: FlutterFlowTheme.of(context).background,
                           textStyle:
                               FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Lexend Deca',
+                                    fontFamily: 'Montserrat',
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -397,7 +393,7 @@ class _EditExpenseWidgetState extends State<EditExpenseWidget>
                           color: FlutterFlowTheme.of(context).primaryColor,
                           textStyle:
                               FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Lexend Deca',
+                                    fontFamily: 'Montserrat',
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                   ),

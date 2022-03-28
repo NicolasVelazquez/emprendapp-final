@@ -22,43 +22,43 @@ abstract class FlutterFlowTheme {
   Color grayLight;
 
   TextStyle get title1 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Poppins',
         color: textColor,
         fontWeight: FontWeight.bold,
         fontSize: 24,
       );
   TextStyle get title2 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Poppins',
         color: secondaryColor,
         fontWeight: FontWeight.w500,
         fontSize: 28,
       );
   TextStyle get title3 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Poppins',
         color: textColor,
         fontWeight: FontWeight.w500,
         fontSize: 20,
       );
   TextStyle get subtitle1 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Poppins',
         color: grayLight,
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
   TextStyle get subtitle2 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Montserrat',
         color: grayLight,
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
   TextStyle get bodyText1 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Montserrat',
         color: grayLight,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
   TextStyle get bodyText2 => GoogleFonts.getFont(
-        'Lexend Deca',
+        'Montserrat',
         color: textColor,
         fontWeight: FontWeight.normal,
         fontSize: 14,
@@ -90,6 +90,7 @@ extension TextStyleHelper on TextStyle {
     FontWeight fontWeight,
     FontStyle fontStyle,
     bool useGoogleFonts = true,
+    TextDecoration decoration,
     double lineHeight,
   }) =>
       useGoogleFonts
@@ -99,6 +100,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize ?? this.fontSize,
               fontWeight: fontWeight ?? this.fontWeight,
               fontStyle: fontStyle ?? this.fontStyle,
+              decoration: decoration,
               height: lineHeight,
             )
           : copyWith(
@@ -107,6 +109,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
+              decoration: decoration,
               height: lineHeight,
             );
 }
