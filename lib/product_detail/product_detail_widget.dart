@@ -3,9 +3,11 @@ import '../components/edit_product_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetailWidget extends StatefulWidget {
   const ProductDetailWidget({
@@ -148,6 +150,69 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                             child: Text(
                               '\$${productDetailProductsRecord.price.toString()}',
                               style: FlutterFlowTheme.of(context).title1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Builder(
+                              builder: (context) {
+                                final supplies = (productDetailProductsRecord
+                                            .supplies
+                                            .toList()
+                                            ?.toList() ??
+                                        [])
+                                    .take(15)
+                                    .toList();
+                                return Wrap(
+                                  spacing: 0,
+                                  runSpacing: 5,
+                                  alignment: WrapAlignment.start,
+                                  crossAxisAlignment: WrapCrossAlignment.start,
+                                  direction: Axis.horizontal,
+                                  runAlignment: WrapAlignment.start,
+                                  verticalDirection: VerticalDirection.down,
+                                  clipBehavior: Clip.none,
+                                  children: List.generate(supplies.length,
+                                      (suppliesIndex) {
+                                    final suppliesItem =
+                                        supplies[suppliesIndex];
+                                    return Card(
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            3, 3, 3, 3),
+                                        child: Text(
+                                          suppliesItem.maybeHandleOverflow(
+                                            maxChars: 15,
+                                            replacement: '…',
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText2
+                                              .override(
+                                                fontFamily: 'Montserrat',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .darkBackground,
+                                              ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                                );
+                              },
                             ),
                           ),
                         ],

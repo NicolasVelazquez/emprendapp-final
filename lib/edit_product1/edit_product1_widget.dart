@@ -1,11 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,25 +16,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class CreateProductFromDraftWidget extends StatefulWidget {
-  const CreateProductFromDraftWidget({
+class EditProduct1Widget extends StatefulWidget {
+  const EditProduct1Widget({
     Key key,
-    this.draft,
+    this.product,
   }) : super(key: key);
 
-  final DraftsRecord draft;
+  final ProductsRecord product;
 
   @override
-  _CreateProductFromDraftWidgetState createState() =>
-      _CreateProductFromDraftWidgetState();
+  _EditProduct1WidgetState createState() => _EditProduct1WidgetState();
 }
 
-class _CreateProductFromDraftWidgetState
-    extends State<CreateProductFromDraftWidget> with TickerProviderStateMixin {
+class _EditProduct1WidgetState extends State<EditProduct1Widget>
+    with TickerProviderStateMixin {
   PageController pageViewController;
+  String uploadedFileUrl = '';
+  TextEditingController priceController;
   TextEditingController descriptionController;
   TextEditingController titleController;
-  TextEditingController priceController;
   TextEditingController supplieInputController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -119,9 +121,10 @@ class _CreateProductFromDraftWidgetState
     );
 
     descriptionController =
-        TextEditingController(text: widget.draft.description);
-    titleController = TextEditingController(text: widget.draft.title);
-    priceController = TextEditingController();
+        TextEditingController(text: widget.product.description);
+    titleController = TextEditingController(text: widget.product.title);
+    priceController =
+        TextEditingController(text: widget.product.price.toString());
     supplieInputController = TextEditingController();
   }
 
@@ -178,6 +181,7 @@ class _CreateProductFromDraftWidgetState
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height * 1,
                         child: PageView(
+                          physics: const NeverScrollableScrollPhysics(),
                           controller: pageViewController ??=
                               PageController(initialPage: 0),
                           scrollDirection: Axis.horizontal,
@@ -209,7 +213,7 @@ class _CreateProductFromDraftWidgetState
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 8, 0, 0),
                                             child: Text(
-                                              'Completa los sigueintes datos para crear un nuevo producto.',
+                                              'Completa los sigueintes datos para cargar un nuevo producto.',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -234,14 +238,14 @@ class _CreateProductFromDraftWidgetState
                                                   image: CachedNetworkImage(
                                                     imageUrl:
                                                         valueOrDefault<String>(
-                                                      widget.draft.image,
+                                                      widget.product.image,
                                                       'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                                     ),
                                                     fit: BoxFit.contain,
                                                   ),
                                                   allowRotation: false,
                                                   tag: valueOrDefault<String>(
-                                                    widget.draft.image,
+                                                    widget.product.image,
                                                     'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                                   ),
                                                   useHeroAnimation: true,
@@ -251,7 +255,7 @@ class _CreateProductFromDraftWidgetState
                                           },
                                           child: Hero(
                                             tag: valueOrDefault<String>(
-                                              widget.draft.image,
+                                              widget.product.image,
                                               'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                             ),
                                             transitionOnUserGestures: true,
@@ -261,11 +265,11 @@ class _CreateProductFromDraftWidgetState
                                               child: CachedNetworkImage(
                                                 imageUrl:
                                                     valueOrDefault<String>(
-                                                  widget.draft.image,
+                                                  widget.product.image,
                                                   'https://firebasestorage.googleapis.com/v0/b/quickorganizer-d6049.appspot.com/o/images%2Fimage_search.png?alt=media&token=a78996af-5082-4fba-a9bf-e0b596e1688c',
                                                 ),
-                                                width: 150,
-                                                height: 150,
+                                                width: 200,
+                                                height: 200,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -279,6 +283,70 @@ class _CreateProductFromDraftWidgetState
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
+                                              FlutterFlowIconButton(
+                                                borderColor: Colors.transparent,
+                                                borderRadius: 0,
+                                                borderWidth: 0,
+                                                buttonSize: 60,
+                                                icon: Icon(
+                                                  Icons
+                                                      .add_photo_alternate_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .textColor,
+                                                  size: 30,
+                                                ),
+                                                onPressed: () async {
+                                                  final selectedMedia =
+                                                      await selectMediaWithSourceBottomSheet(
+                                                    context: context,
+                                                    allowPhoto: true,
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .darkBackground,
+                                                    textColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .grayLight,
+                                                  );
+                                                  if (selectedMedia != null &&
+                                                      validateFileFormat(
+                                                          selectedMedia
+                                                              .storagePath,
+                                                          context)) {
+                                                    showUploadMessage(
+                                                      context,
+                                                      'Uploading file...',
+                                                      showLoading: true,
+                                                    );
+                                                    final downloadUrl =
+                                                        await uploadData(
+                                                            selectedMedia
+                                                                .storagePath,
+                                                            selectedMedia
+                                                                .bytes);
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .hideCurrentSnackBar();
+                                                    if (downloadUrl != null) {
+                                                      setState(() =>
+                                                          uploadedFileUrl =
+                                                              downloadUrl);
+                                                      showUploadMessage(
+                                                        context,
+                                                        'Success!',
+                                                      );
+                                                    } else {
+                                                      showUploadMessage(
+                                                        context,
+                                                        'Failed to upload media',
+                                                      );
+                                                      return;
+                                                    }
+                                                  }
+                                                },
+                                              ),
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -512,6 +580,10 @@ class _CreateProductFromDraftWidgetState
                                                     .fromSTEB(0, 16, 0, 0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
+                                                    setState(() => FFAppState()
+                                                            .supplies =
+                                                        widget.product.supplies
+                                                            .toList());
                                                     await pageViewController
                                                         .nextPage(
                                                       duration: Duration(
@@ -519,7 +591,7 @@ class _CreateProductFromDraftWidgetState
                                                       curve: Curves.ease,
                                                     );
                                                   },
-                                                  text: 'Agregar insumos',
+                                                  text: 'Modificar Insumos',
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 40,
@@ -598,23 +670,40 @@ class _CreateProductFromDraftWidgetState
                                                 return;
                                               }
 
-                                              final productsCreateData = {
-                                                ...createProductsRecordData(
-                                                  title: titleController.text,
-                                                  description:
-                                                      descriptionController
-                                                          .text,
-                                                  price: double.parse(
-                                                      priceController.text),
-                                                  image: widget.draft.image,
-                                                  uid: currentUserUid,
-                                                ),
-                                                'supplies':
-                                                    FFAppState().supplies,
-                                              };
-                                              await ProductsRecord.collection
-                                                  .doc()
-                                                  .set(productsCreateData);
+                                              if (uploadedFileUrl != null &&
+                                                  uploadedFileUrl != '') {
+                                                final productsUpdateData = {
+                                                  ...createProductsRecordData(
+                                                    title: titleController.text,
+                                                    description:
+                                                        descriptionController
+                                                            .text,
+                                                    price: double.parse(
+                                                        priceController.text),
+                                                    image: uploadedFileUrl,
+                                                  ),
+                                                  'supplies':
+                                                      FFAppState().supplies,
+                                                };
+                                                await widget.product.reference
+                                                    .update(productsUpdateData);
+                                              } else {
+                                                final productsUpdateData = {
+                                                  ...createProductsRecordData(
+                                                    title: titleController.text,
+                                                    description:
+                                                        descriptionController
+                                                            .text,
+                                                    price: double.parse(
+                                                        priceController.text),
+                                                  ),
+                                                  'supplies':
+                                                      FFAppState().supplies,
+                                                };
+                                                await widget.product.reference
+                                                    .update(productsUpdateData);
+                                              }
+
                                               setState(() =>
                                                   FFAppState().supplies = []);
                                               Navigator.pop(context);

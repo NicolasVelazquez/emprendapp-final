@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 
 import '../backend/backend.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'firebase_user_provider.dart';
 
@@ -28,7 +30,7 @@ Future<User> signInOrCreateAccount(
   }
 }
 
-void signOut() {
+Future signOut() {
   _currentJwtToken = '';
   FirebaseAuth.instance.signOut();
 }

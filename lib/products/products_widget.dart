@@ -11,6 +11,7 @@ import '../product_detail/product_detail_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductsWidget extends StatefulWidget {
   const ProductsWidget({Key key}) : super(key: key);
@@ -454,12 +455,50 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                                                                           context)
                                                                       .subtitle2,
                                                                 ),
-                                                                Icon(
-                                                                  Icons.edit,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .grayLight,
-                                                                  size: 24,
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Icon(
+                                                                          Icons
+                                                                              .mode_edit,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).grayLight,
+                                                                          size:
+                                                                              24,
+                                                                        ),
+                                                                        InkWell(
+                                                                          onTap:
+                                                                              () async {
+                                                                            await listViewSuppliersRecord.reference.delete();
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.close_rounded,
+                                                                            color:
+                                                                                Color(0xB0F97070),
+                                                                            size:
+                                                                                24,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),

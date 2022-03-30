@@ -8,6 +8,7 @@ import '../login_page/login_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePageWidget extends StatefulWidget {
   const ProfilePageWidget({Key key}) : super(key: key);
@@ -173,7 +174,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                 size: 24,
                                               ),
                                               onPressed: () async {
-                                                signOut();
+                                                await signOut();
                                                 await Navigator
                                                     .pushAndRemoveUntil(
                                                   context,

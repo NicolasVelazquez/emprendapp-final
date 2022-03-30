@@ -1,6 +1,6 @@
 {
-    "name": "QuickOrganizer",
-    "short_name": "QuickOrganizer",
+    "name": "EmprendApp",
+    "short_name": "EmprendApp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,10 +1,14 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditProductWidget extends StatefulWidget {
   const EditProductWidget({
@@ -307,14 +311,26 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             return;
                           }
 
-                          final productsUpdateData = createProductsRecordData(
-                            title: widget.product.title,
-                            description: descriptionController.text,
-                            price: double.parse(priceController.text),
-                            image: uploadedFileUrl,
-                          );
-                          await widget.product.reference
-                              .update(productsUpdateData);
+                          if (uploadedFileUrl != null &&
+                              uploadedFileUrl != '') {
+                            final productsUpdateData = createProductsRecordData(
+                              title: widget.product.title,
+                              description: descriptionController.text,
+                              price: double.parse(priceController.text),
+                              image: uploadedFileUrl,
+                            );
+                            await widget.product.reference
+                                .update(productsUpdateData);
+                          } else {
+                            final productsUpdateData = createProductsRecordData(
+                              title: widget.product.title,
+                              description: descriptionController.text,
+                              price: double.parse(priceController.text),
+                            );
+                            await widget.product.reference
+                                .update(productsUpdateData);
+                          }
+
                           Navigator.pop(context);
                         },
                         text: 'Guardar',

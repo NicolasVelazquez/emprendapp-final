@@ -1,4 +1,4 @@
-# QuickOrganizer
+# EmprendApp
 
 A new Flutter project.
 
